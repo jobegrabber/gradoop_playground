@@ -29,7 +29,7 @@ public class MostUsedLanguagesByCountReduction extends AbstractRunner {
 				.getVertices()
 				.filter(vertex -> vertex.getLabel().equalsIgnoreCase("person"))
 				.map(vertex -> {
-					List<PropertyValue> speaks = vertex.getPropertyValue("speaks").getList();
+					List<PropertyValue> speaks = vertex.getPropertyValue("language").getList();
 					// gradoop cannot process pairs, so use a Map instead
 					Map<PropertyValue, PropertyValue> speakerCountByLanguage = speaks.stream()
 							.map(propertyValue -> Pair.create(propertyValue, PropertyValue.create(1)))

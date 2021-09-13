@@ -30,16 +30,16 @@ public class MostUsedLanguagesReduction extends AbstractRunner {
 				.filter(vertex -> vertex.getLabel().equalsIgnoreCase("person"))
 				.reduce((v1, v2) -> {
 					Set<PropertyValue> languages = new HashSet<>();
-					languages.addAll(v1.getPropertyValue("speaks").getList());
-					languages.addAll(v2.getPropertyValue("speaks").getList());
-					v1.setProperty("speaks", new ArrayList<>(languages));
+					languages.addAll(v1.getPropertyValue("language").getList());
+					languages.addAll(v2.getPropertyValue("language").getList());
+					v1.setProperty("language", new ArrayList<>(languages));
 					return v1;
 				})
 				.collect()
 				.forEach(vertex -> {
-					List<PropertyValue> speaks = vertex.getPropertyValue("speaks").getList();
-					Collections.sort(speaks);
-					System.out.println(speaks);
+					List<PropertyValue> language = vertex.getPropertyValue("language").getList();
+					Collections.sort(language);
+					System.out.println(language);
 				});
 	}
 

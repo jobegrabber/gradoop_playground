@@ -13,8 +13,8 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
 
-        <dep.gradoop.version>0.5.1</dep.gradoop.version>
-        <dep.flink.version>1.7.2</dep.flink.version>
+        <dep.gradoop.version>0.6.0</dep.gradoop.version>
+        <dep.flink.version>1.13.2</dep.flink.version>
     </properties>
 
     <dependencies>
@@ -42,14 +42,14 @@
 
         <dependency>
             <groupId>org.apache.flink</groupId>
-            <artifactId>flink-clients_2.11</artifactId>
+            <artifactId>flink-clients_2.12</artifactId>
             <version>${dep.flink.version}</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.apache.flink</groupId>
-            <artifactId>flink-gelly_2.11</artifactId>
+            <artifactId>flink-gelly_2.12</artifactId>
             <version>${dep.flink.version}</version>
         </dependency>
 
@@ -57,8 +57,7 @@
         <dependency>
             <groupId>org.s1ck</groupId>
             <artifactId>ldbc-flink-import</artifactId>
-            <version>0.3</version>
-            <scope>provided</scope>
+            <version>0.4</version>
         </dependency>
 
         <dependency>
@@ -67,6 +66,12 @@
             <version>1.1.1</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-client</artifactId>
+            <version>2.7.3</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -111,6 +116,27 @@
                                 </filter>
                             </filters>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <!-- NOTE: We don't need a groupId specification because the group is
+                     org.apache.maven.plugins ...which is assumed by default.
+                 -->
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id> <!-- this is used for inheritance merges -->
+                        <phase>package</phase> <!-- bind to the packaging phase -->
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
