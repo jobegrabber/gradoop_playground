@@ -53,13 +53,6 @@
             <version>${dep.flink.version}</version>
         </dependency>
 
-        <!-- needs to be installed in local m2 repo, from forked repo -->
-        <dependency>
-            <groupId>org.s1ck</groupId>
-            <artifactId>ldbc-flink-import</artifactId>
-            <version>0.4</version>
-        </dependency>
-
         <dependency>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
